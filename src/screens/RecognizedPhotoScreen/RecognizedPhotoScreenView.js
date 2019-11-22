@@ -2,7 +2,7 @@ import * as React from 'react';
 import {ScrollView, View, Image, StyleSheet} from 'react-native';
 import {useNavigationParam} from 'react-navigation-hooks';
 import {useDimensions} from 'react-native-hooks';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useMemo} from 'react';
 import ImaggaAPIController from '../../api/ImaggaAPIController';
 import OptionButton from './OptionButton';
 import ColorPalette from '../../common/ColorPalette';
@@ -11,8 +11,7 @@ function RecognizedPhotoScreenView() {
   const screenWidth = useDimensions().window.width;
   const image = useNavigationParam('image');
   const [possibleObjects, setPossibleObjects] = useState([]);
-
-  const imageSize = screenWidth - 60;
+  const imageSize = useMemo(() => screenWidth - 60, [screenWidth]);
 
   useEffect(() => {
     async function fetchPossibleObjects() {

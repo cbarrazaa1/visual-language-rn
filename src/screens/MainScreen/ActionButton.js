@@ -2,10 +2,11 @@ import * as React from 'react';
 import {TouchableOpacity, StyleSheet, Text} from 'react-native';
 import {useDimensions} from 'react-native-hooks';
 import {elevationShadowStyle} from '../../common/StylesHelper';
+import {useMemo} from 'react';
 
 function ActionButton({icon, title, onPress, color}) {
   const {width} = useDimensions().window;
-  const size = width / 2 - 14;
+  const size = useMemo(() => width / 2 - 14, [width]);
 
   return (
     <TouchableOpacity
