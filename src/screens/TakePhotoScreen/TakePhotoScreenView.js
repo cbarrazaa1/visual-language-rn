@@ -16,7 +16,6 @@ function TakePhotoScreenView() {
     try {
       setIsTakingPhoto(true);
       const image = await takePicture();
-      console.log('data', image);
       navigation.navigate('RecognizedPhoto', {image});
     } catch (err) {
     } finally {

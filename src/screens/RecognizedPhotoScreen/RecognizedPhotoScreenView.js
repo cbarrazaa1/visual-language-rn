@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {ScrollView, View, Image, StyleSheet} from 'react-native';
-import {useNavigationParam} from 'react-navigation-hooks';
+import {ScrollView, View, Image, StyleSheet, Text} from 'react-native';
+import {useNavigationParam, useNavigation} from 'react-navigation-hooks';
 import {useDimensions} from 'react-native-hooks';
 import {useEffect, useState, useMemo} from 'react';
 import ImaggaAPIController from '../../api/ImaggaAPIController';
-import OptionButton from './OptionButton';
+import Button from '../../common/Button';
 import ColorPalette from '../../common/ColorPalette';
 
 function RecognizedPhotoScreenView() {
@@ -12,6 +12,7 @@ function RecognizedPhotoScreenView() {
   const image = useNavigationParam('image');
   const [possibleObjects, setPossibleObjects] = useState([]);
   const imageSize = useMemo(() => screenWidth - 60, [screenWidth]);
+  const navigation = useNavigation();
 
   useEffect(() => {
     async function fetchPossibleObjects() {
@@ -23,28 +24,37 @@ function RecognizedPhotoScreenView() {
     fetchPossibleObjects();
   }, [image]);
 
+  const onSelectOption = option => {
+    navigation.navigate('TranslatePhoto', {option, image});
+  };
+
+  const onTakeOtherPhoto = () => {
+    navigation.goBack();
+  };
+
   return (
     <ScrollView style={styles.root} contentContainerStyle={styles.rootContent}>
       <Image
         source={{uri: image.uri}}
         style={[styles.image, {width: imageSize, height: imageSize}]}
       />
+      <Text style={styles.descLabel}>Esto parece...</Text>
       <View style={styles.buttonContainer}>
         {possibleObjects.map((obj, i) => {
           return (
-            <OptionButton
+            <Button
               key={i}
               style={[styles.optionButton, {width: imageSize + 20}]}
               text={obj.tag.es}
-              onPress={() => null}
+              onPress={() => onSelectOption(obj.tag.es)}
               color={ColorPalette.CTA_PRIMARY}
             />
           );
         })}
-        <OptionButton
-          style={[styles.optionButton, {width: imageSize + 20}]}
+        <Button
+          style={[styles.backButton, {width: imageSize + 20}]}
           text="Tomar otra foto"
-          onPress={() => null}
+          onPress={onTakeOtherPhoto}
           color={ColorPalette.CTA_SECONDARY}
         />
       </View>
@@ -60,6 +70,7 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     paddingTop: 12,
+    backgroundColor: ColorPalette.BACKGROUND,
   },
   rootContent: {
     alignItems: 'center',
@@ -70,10 +81,18 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
   optionButton: {
-    marginBottom: 10,
+    marginBottom: 12,
+  },
+  backButton: {
+    marginTop: 16,
   },
   buttonContainer: {
     padding: 10,
+  },
+  descLabel: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginTop: 8,
   },
 });
 

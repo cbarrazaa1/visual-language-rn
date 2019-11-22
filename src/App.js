@@ -10,6 +10,7 @@ import FlashcardsListScreen from './screens/FlaschardsListScreen/FlashcardsListS
 import MainScreen from './screens/MainScreen/MainScreenView';
 import TakePhotoScreen from './screens/TakePhotoScreen/TakePhotoScreenView';
 import RecognizedPhotoScreen from './screens/RecognizedPhotoScreen/RecognizedPhotoScreenView';
+import TranslatePhotoScreen from './screens/TranslatePhotoScreen/TranslatePhotoScreenView';
 useScreens();
 
 const defaultStackNavigationOptions = ({navigation}) => ({
@@ -32,6 +33,9 @@ const MainStack = createStackNavigator(
     },
     RecognizedPhoto: {
       screen: RecognizedPhotoScreen,
+    },
+    TranslatePhoto: {
+      screen: TranslatePhotoScreen,
     },
   },
   {

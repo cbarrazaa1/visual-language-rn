@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
-import {elevationShadowStyle} from '../../common/StylesHelper';
+import {elevationShadowStyle} from './StylesHelper';
 
-function OptionButton({text, onPress, color, style}) {
+function Button({text, onPress, color, style}) {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(OptionButton);
+export default React.memo(Button);

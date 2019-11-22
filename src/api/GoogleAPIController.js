@@ -15,6 +15,7 @@ async function getTranslationForText(text, language) {
     method: 'GET',
   });
   const json = await response.json();
+  console.log(json);
   return json.data.translations[0].translatedText;
 }
 
