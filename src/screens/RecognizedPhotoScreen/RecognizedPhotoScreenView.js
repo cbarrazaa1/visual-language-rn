@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
   },
   rootContent: {
     alignItems: 'center',
+    flexGrow: 1,
   },
   image: {
     width: 120,

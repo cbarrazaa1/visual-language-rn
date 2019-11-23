@@ -15,7 +15,7 @@ function Button({text, onPress, color, style}) {
 const styles = StyleSheet.create({
   root: {
     borderRadius: 10,
-    ...elevationShadowStyle(8),
+    ...elevationShadowStyle(4),
     alignItems: 'center',
     justifyContent: 'center',
   },

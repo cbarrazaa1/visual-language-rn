@@ -3,21 +3,29 @@ import {ScrollView, View, Text, StyleSheet} from 'react-native';
 import Button from '../../common/Button';
 import {useState, useEffect, useMemo} from 'react';
 import {useNavigation, useNavigationParam} from 'react-navigation-hooks';
-import DraftFlashcard from '../RecognizedPhotoScreen/DraftFlashcard';
+import DraftFlashcard from './DraftFlashcard';
 import ColorPalette from '../../common/ColorPalette';
-import LanguageSelector from '../RecognizedPhotoScreen/LanguageSelector';
+import LanguageSelector from './LanguageSelector';
 import {useDimensions} from 'react-native-hooks';
 import GoogleAPIController from '../../api/GoogleAPIController';
 
 function TranslatePhotoSreenView() {
+  const [language, setLanguage] = useState('en');
   const screenWidth = useDimensions().window.width;
   const navigation = useNavigation();
   const option = useNavigationParam('option');
   const image = useNavigationParam('image');
   const buttonSize = useMemo(() => screenWidth, [screenWidth]);
 
+  const onLanguageChange = language => {
+    setLanguage(language);
+  };
+
   const onTranslatePress = async () => {
-    const res = await GoogleAPIController.getTranslationForText(option, 'en');
+    const res = await GoogleAPIController.getTranslationForText(
+      option,
+      language,
+    );
     alert(res);
   };
 
@@ -29,7 +37,7 @@ function TranslatePhotoSreenView() {
     <ScrollView style={styles.root} contentContainerStyle={styles.rootContent}>
       <DraftFlashcard image={image} text={option} />
       <Text style={styles.descLabel}>Traducir a...</Text>
-      <LanguageSelector />
+      <LanguageSelector onLanguageChange={onLanguageChange} />
       <View style={styles.buttonContainer}>
         <Button
           style={[styles.button, {width: buttonSize - 40}]}
