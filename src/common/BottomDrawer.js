@@ -10,7 +10,7 @@ import BottomDrawerContext, {
 export const TITLE_CONTAINER_HEIGHT = 50;
 
 function BottomDrawerComponent({title, content, offsetY}) {
-  const {setHeight} = useContext(BottomDrawerContext);
+  const {setHeight, setOffsetY} = useContext(BottomDrawerContext);
   const drawerState = useAnimatedValue(0);
   const {height} = useDimensions().screen;
   const totalOffsetY = useMemo(() => height / 3 + (offsetY || 0), [
@@ -29,7 +29,8 @@ function BottomDrawerComponent({title, content, offsetY}) {
 
   useEffect(() => {
     setHeight(totalOffsetY);
-  }, [setHeight, totalOffsetY]);
+    setOffsetY(offsetY);
+  }, [offsetY, setOffsetY, totalOffsetY, setHeight]);
 
   const onHideDrawer = () => {
     Animated.timing(drawerState, {
@@ -116,6 +117,7 @@ class BottomDrawer extends React.PureComponent {
       visible: false,
       title: '',
       content: null,
+      offsetY: 0,
     };
   }
 
@@ -125,6 +127,7 @@ class BottomDrawer extends React.PureComponent {
         <BottomDrawerComponent
           title={this.state.title}
           content={this.state.content}
+          offsetY={this.state.offsetY}
         />
       )
     );
@@ -135,11 +138,12 @@ class BottomDrawer extends React.PureComponent {
       visible: true,
       title: options.title,
       content: options.content,
+      offsetY: options.offsetY,
     }));
   }
 
   _hide() {
-    this.setState(prev => ({visible: false, title: ''}));
+    this.setState(prev => ({visible: false, title: '', offsetY: 0}));
   }
 }
 

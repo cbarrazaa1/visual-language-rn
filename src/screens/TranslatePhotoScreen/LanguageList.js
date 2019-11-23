@@ -8,14 +8,23 @@ import {
 } from 'react-native';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import ColorPalette from '../../common/ColorPalette';
-import {useState, useContext} from 'react';
+import {useState, useContext, useMemo} from 'react';
 import BottomDrawerContext from '../../context/BottomDrawerContext';
+import {TITLE_CONTAINER_HEIGHT} from '../../common/BottomDrawer';
 
 function LanguageList({languages, currentSelectedLanguage, onSelectLanguage}) {
   const [selectedLanguage, setSelectedLanguage] = useState(
     currentSelectedLanguage,
   );
-  const {height} = useContext(BottomDrawerContext);
+  const {height, offsetY} = useContext(BottomDrawerContext);
+  const containerHeight = useMemo(
+    () =>
+      height +
+      (height - languages.length * 50 + 25) -
+      TITLE_CONTAINER_HEIGHT -
+      offsetY,
+    [languages, height, offsetY],
+  );
 
   const onRowPress = language => {
     setSelectedLanguage(language);
@@ -23,7 +32,7 @@ function LanguageList({languages, currentSelectedLanguage, onSelectLanguage}) {
   };
 
   return (
-    <View style={{height: height - 50}}>
+    <View style={{height: containerHeight}}>
       <ScrollView
         style={styles.root}
         contentContainerStyle={styles.rootContent}>
