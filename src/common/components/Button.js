@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
-import {elevationShadowStyle} from './StylesHelper';
+import {elevationShadowStyle} from '../StylesHelper';
 
 function Button({text, onPress, color, style}) {
   return (

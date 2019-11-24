@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Animated, View, StyleSheet, Text, Easing} from 'react-native';
 import {useEffect, useMemo} from 'react';
 import {useDimensions} from 'react-native-hooks';
-import {useAnimatedValue} from '../common/useAnimatedValue';
+import {useAnimatedValue} from '../hooks/useAnimatedValue';
 
 export const TITLE_CONTAINER_HEIGHT = 50;
 

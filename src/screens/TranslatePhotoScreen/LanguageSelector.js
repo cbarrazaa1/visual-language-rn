@@ -3,7 +3,7 @@ import {TouchableOpacity, StyleSheet, Text} from 'react-native';
 import {elevationShadowStyle} from '../../common/StylesHelper';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import {useState} from 'react';
-import BottomDrawer from '../../common/BottomDrawer';
+import BottomDrawer from '../../common/components/BottomDrawer';
 import LanguageList from './LanguageList';
 
 const languages = {

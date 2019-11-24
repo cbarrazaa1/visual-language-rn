@@ -4,7 +4,7 @@ import {useNavigationParam, useNavigation} from 'react-navigation-hooks';
 import {useDimensions} from 'react-native-hooks';
 import {useEffect, useState, useMemo} from 'react';
 import ImaggaAPIController from '../../api/ImaggaAPIController';
-import Button from '../../common/Button';
+import Button from '../../common/components/Button';
 import ColorPalette from '../../common/ColorPalette';
 
 function RecognizedPhotoScreenView() {

@@ -1,39 +1,22 @@
 import * as React from 'react';
-import {ScrollView, View, Text, StyleSheet} from 'react-native';
-import Button from '../../common/components/Button';
-import {useState, useMemo} from 'react';
+import {ScrollView, View, StyleSheet} from 'react-native';
 import {useNavigation, useNavigationParam} from 'react-navigation-hooks';
 import DraftFlashcard from '../../common/components/DraftFlashcard';
 import ColorPalette from '../../common/ColorPalette';
-import LanguageSelector from './LanguageSelector';
+import Button from '../../common/components/Button';
 import {useDimensions} from 'react-native-hooks';
-import GoogleAPIController from '../../api/GoogleAPIController';
+import {useMemo} from 'react';
 
-function TranslatePhotoSreenView() {
-  const [language, setLanguage] = useState('en');
-  const screenWidth = useDimensions().window.width;
+function CreateFlashcardScreenView() {
   const navigation = useNavigation();
-  const option = useNavigationParam('option');
+  const text = useNavigationParam('text');
   const image = useNavigationParam('image');
+  const language = useNavigationParam('language');
+  const translatedText = useNavigationParam('translatedText');
+  const screenWidth = useDimensions().window.width;
   const buttonSize = useMemo(() => screenWidth - 40, [screenWidth]);
 
-  const onLanguageChange = lang => {
-    setLanguage(lang);
-  };
-
-  const onTranslatePress = async () => {
-    const res = await GoogleAPIController.getTranslationForText(
-      option,
-      language,
-    );
-
-    navigation.navigate('CreateFlashcard', {
-      text: option,
-      image,
-      language,
-      translatedText: res,
-    });
-  };
+  const onCreatePress = () => {};
 
   const onBackPress = () => {
     navigation.goBack();
@@ -41,15 +24,13 @@ function TranslatePhotoSreenView() {
 
   return (
     <ScrollView style={styles.root} contentContainerStyle={styles.rootContent}>
-      <DraftFlashcard image={image} text={option} />
-      <Text style={styles.descLabel}>Traducir a...</Text>
-      <LanguageSelector onLanguageChange={onLanguageChange} />
+      <DraftFlashcard image={image} text={text} />
       <View style={styles.buttonContainer}>
         <Button
           style={[styles.button, {width: buttonSize}]}
           color={ColorPalette.CTA_PRIMARY}
-          text="Traducir"
-          onPress={onTranslatePress}
+          text="Crear Flashcard"
+          onPress={onCreatePress}
         />
         <Button
           style={[styles.button, {width: buttonSize}]}
@@ -62,24 +43,19 @@ function TranslatePhotoSreenView() {
   );
 }
 
-TranslatePhotoSreenView.navigationOptions = {
-  title: '¿Cómo se dice en...?',
+CreateFlashcardScreenView.navigationOptions = {
+  title: 'Crear Flashcard',
 };
 
 const styles = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: ColorPalette.BACKGROUND,
+    paddingTop: 16,
   },
   rootContent: {
     alignItems: 'center',
-    justifyContent: 'center',
     flexGrow: 1,
-  },
-  descLabel: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginVertical: 12,
   },
   buttonContainer: {
     width: '100%',
@@ -91,4 +67,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TranslatePhotoSreenView;
+export default CreateFlashcardScreenView;

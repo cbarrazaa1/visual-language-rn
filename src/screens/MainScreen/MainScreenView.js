@@ -1,11 +1,10 @@
 import * as React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import ActionButton from './ActionButton';
 import ColorPalette from '../../common/ColorPalette';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from 'react-navigation-hooks';
-import BottomDrawer from '../../common/BottomDrawer';
 
 function MainScreenView() {
   const navigation = useNavigation();
