@@ -58,7 +58,8 @@ const MainStack = createStackNavigator(
 MainStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (
-    navigation.state.routes[navigation.state.index].routeName === 'TakePhoto'
+    navigation.state.routes[navigation.state.index].routeName === 'TakePhoto' ||
+    navigation.state.routes[navigation.state.index].routeName === 'Practice'
   ) {
     tabBarVisible = false;
   }

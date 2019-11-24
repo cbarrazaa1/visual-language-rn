@@ -1,5 +1,12 @@
 import * as React from 'react';
-import {ScrollView, View, Image, StyleSheet, Text} from 'react-native';
+import {
+  ActivityIndicator,
+  ScrollView,
+  View,
+  Image,
+  StyleSheet,
+  Text,
+} from 'react-native';
 import {useNavigationParam, useNavigation} from 'react-navigation-hooks';
 import {useDimensions} from 'react-native-hooks';
 import {useEffect, useState, useMemo} from 'react';
@@ -11,6 +18,7 @@ function RecognizedPhotoScreenView() {
   const screenWidth = useDimensions().window.width;
   const image = useNavigationParam('image');
   const [possibleObjects, setPossibleObjects] = useState([]);
+  const [loading, setLoading] = useState(true);
   const imageSize = useMemo(() => screenWidth - 60, [screenWidth]);
   const navigation = useNavigation();
 
@@ -24,11 +32,21 @@ function RecognizedPhotoScreenView() {
     fetchPossibleObjects();
   }, [image]);
 
+  useEffect(() => {
+    if (possibleObjects.length > 0) {
+      setLoading(false);
+    }
+  }, [possibleObjects]);
+
   const onSelectOption = option => {
     navigation.navigate('TranslatePhoto', {option, image});
   };
 
   const onTakeOtherPhoto = () => {
+    if (loading) {
+      return;
+    }
+
     navigation.goBack();
   };
 
@@ -40,17 +58,21 @@ function RecognizedPhotoScreenView() {
       />
       <Text style={styles.descLabel}>Esto parece...</Text>
       <View style={styles.buttonContainer}>
-        {possibleObjects.map((obj, i) => {
-          return (
-            <Button
-              key={i}
-              style={[styles.optionButton, {width: imageSize + 20}]}
-              text={obj.tag.es}
-              onPress={() => onSelectOption(obj.tag.es)}
-              color={ColorPalette.CTA_PRIMARY}
-            />
-          );
-        })}
+        {loading ? (
+          <ActivityIndicator size="large" />
+        ) : (
+          possibleObjects.map((obj, i) => {
+            return (
+              <Button
+                key={i}
+                style={[styles.optionButton, {width: imageSize + 20}]}
+                text={obj.tag.es}
+                onPress={() => onSelectOption(obj.tag.es)}
+                color={ColorPalette.CTA_PRIMARY}
+              />
+            );
+          })
+        )}
         <Button
           style={[styles.backButton, {width: imageSize + 20}]}
           text="Tomar otra foto"
