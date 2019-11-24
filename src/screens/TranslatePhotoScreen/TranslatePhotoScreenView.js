@@ -7,7 +7,7 @@ import DraftFlashcard from '../../common/components/DraftFlashcard';
 import ColorPalette from '../../common/ColorPalette';
 import LanguageSelector from './LanguageSelector';
 import {useDimensions} from 'react-native-hooks';
-import GoogleAPIController from '../../api/GoogleAPIController';
+import GoogleAPIController from '../../controllers/GoogleAPIController';
 
 function TranslatePhotoSreenView() {
   const [language, setLanguage] = useState('en');

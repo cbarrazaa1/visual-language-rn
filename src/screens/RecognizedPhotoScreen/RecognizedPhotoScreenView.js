@@ -3,7 +3,7 @@ import {ScrollView, View, Image, StyleSheet, Text} from 'react-native';
 import {useNavigationParam, useNavigation} from 'react-navigation-hooks';
 import {useDimensions} from 'react-native-hooks';
 import {useEffect, useState, useMemo} from 'react';
-import ImaggaAPIController from '../../api/ImaggaAPIController';
+import ImaggaAPIController from '../../controllers/ImaggaAPIController';
 import Button from '../../common/components/Button';
 import ColorPalette from '../../common/ColorPalette';
 
