@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Image, View, Text, StyleSheet} from 'react-native';
-import {elevationShadowStyle} from '../../common/StylesHelper';
+import {elevationShadowStyle} from '../StylesHelper';
 
 function DraftFlashcard({text, image}) {
   return (

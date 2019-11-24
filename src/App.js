@@ -11,6 +11,8 @@ import MainScreen from './screens/MainScreen/MainScreenView';
 import TakePhotoScreen from './screens/TakePhotoScreen/TakePhotoScreenView';
 import RecognizedPhotoScreen from './screens/RecognizedPhotoScreen/RecognizedPhotoScreenView';
 import TranslatePhotoScreen from './screens/TranslatePhotoScreen/TranslatePhotoScreenView';
+import BottomDrawer from './common/components/BottomDrawer';
+import CreateFlashcardScreen from './screens/CreateFlashcardScreen/CreateFlashcardScreenView';
 useScreens();
 
 const defaultStackNavigationOptions = ({navigation}) => ({
@@ -36,6 +38,9 @@ const MainStack = createStackNavigator(
     },
     TranslatePhoto: {
       screen: TranslatePhotoScreen,
+    },
+    CreateFlashcard: {
+      screen: CreateFlashcardScreen,
     },
   },
   {
@@ -102,5 +107,10 @@ const AppNavigator = createBottomTabNavigator(
 const AppContainer = createAppContainer(AppNavigator);
 
 export default function App() {
-  return <AppContainer />;
+  return (
+    <>
+      <AppContainer />
+      <BottomDrawer />
+    </>
+  );
 }
