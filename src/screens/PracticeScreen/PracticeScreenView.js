@@ -1,32 +1,41 @@
 import * as React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import ColorPalette from '../../common/ColorPalette';
-import {useState, useEffect, useMemo} from 'react';
+import {useState, useEffect, useMemo, useRef, useCallback} from 'react';
 import {elevationShadowStyle} from '../../common/StylesHelper';
 import {useDimensions} from 'react-native-hooks';
 import DraftFlashcard from '../../common/components/DraftFlashcard';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import Voice from 'react-native-voice';
 import TextToSpeechController from '../../controllers/TextToSpeechController';
+import FlashcardController from '../../controllers/FlashcardController';
+import Alert from '../../common/components/Alert';
 
 function PracticeScreenView() {
   const [time, setTime] = useState(10);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [flashcard, setFlashcard] = useState(null);
+  const flashcardsArray = useRef([]);
+  const flashcards = useRef([]);
   const screenWidth = useDimensions().screen.width;
   const barWidth = useMemo(() => screenWidth - 30, [screenWidth]);
   const actualWidth = useMemo(() => (barWidth * time) / 10, [time, barWidth]);
-  const flashcard = {
-    text: 'Camello',
-    uri: 'https://secretldn.com/wp-content/uploads/2018/03/Animals-5.jpg',
-    translatedText: 'Camel',
-    language: 'Inglés',
-  };
 
   useEffect(() => {
+    async function getFlashcards() {
+      flashcardsArray.current = await FlashcardController.readFlashcards();
+      flashcards.current = [...flashcardsArray.current];
+
+      if (flashcardsArray.current.length > 0) {
+        generateRandomFlashcard();
+      }
+    }
+
+    getFlashcards();
+
     // setup voice
     Voice.onSpeechStart = onSpeechStart;
     Voice.onSpeechEnd = onSpeechEnd;
-    Voice.onSpeechResults = onSpeechResults;
 
     // start timer
     const timer = setInterval(() => {
@@ -37,6 +46,7 @@ function PracticeScreenView() {
       Voice.destroy().then(Voice.removeAllListeners);
       clearTimeout(timer);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -44,6 +54,21 @@ function PracticeScreenView() {
       setTime(10);
     }
   }, [time]);
+
+  useEffect(() => {
+    Voice.onSpeechResults = onSpeechResults;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [flashcard]);
+
+  const generateRandomFlashcard = () => {
+    const rnd = Math.floor(Math.random() * flashcards.current.length);
+    setFlashcard(flashcards.current[rnd]);
+    flashcards.current.splice(rnd, 1);
+
+    if (flashcards.current.length === 0) {
+      flashcards.current = flashcardsArray.current;
+    }
+  };
 
   const onSpeechStart = e => {
     setIsSpeaking(true);
@@ -60,9 +85,19 @@ function PracticeScreenView() {
         val => val.toLowerCase() === flashcard.translatedText.toLowerCase(),
       )
     ) {
-      alert('Correct!');
+      Alert.show({
+        title: 'Correcto!',
+        hasButton: false,
+        hideTimer: 2000,
+        titleColor: ColorPalette.CTA_PRIMARY,
+      });
     } else {
-      alert('Incorrect...');
+      Alert.show({
+        title: 'Incorrecto!',
+        hasButton: false,
+        hideTimer: 2000,
+        titleColor: ColorPalette.CTA_CANCEL,
+      });
     }
 
     await Voice.stop();
@@ -72,6 +107,7 @@ function PracticeScreenView() {
   const onSpeakPress = async () => {
     if (isSpeaking) {
       await Voice.stop();
+      setIsSpeaking(false);
     } else {
       await Voice.start(
         TextToSpeechController.convertLanguageToLocale(flashcard.language),
@@ -80,28 +116,30 @@ function PracticeScreenView() {
   };
 
   return (
-    <View style={styles.root}>
-      <Text style={styles.timeLabel}>{time} segundos</Text>
-      <View style={[styles.emptyProgress, {width: barWidth}]}>
-        <View style={[styles.fullProgress, {width: actualWidth}]} />
+    flashcard && (
+      <View style={styles.root}>
+        <Text style={styles.timeLabel}>{time} segundos</Text>
+        <View style={[styles.emptyProgress, {width: barWidth}]}>
+          <View style={[styles.fullProgress, {width: actualWidth}]} />
+        </View>
+        <Text style={styles.descLabel}>Cómo se dice...</Text>
+        <DraftFlashcard text={flashcard.text} image={{uri: flashcard.uri}} />
+        <Text style={styles.descLabel}>en</Text>
+        <Text style={styles.langLabel}>¿{flashcard.language}?</Text>
+        <TouchableOpacity
+          style={[
+            styles.speakButton,
+            {
+              backgroundColor: isSpeaking
+                ? ColorPalette.CTA_PRIMARY
+                : ColorPalette.PRIMARY,
+            },
+          ]}
+          onPress={onSpeakPress}>
+          <Ionicon name="ios-mic" size={64} color="#FFFFFF" />
+        </TouchableOpacity>
       </View>
-      <Text style={styles.descLabel}>Cómo se dice...</Text>
-      <DraftFlashcard text={flashcard.text} image={{uri: flashcard.uri}} />
-      <Text style={styles.descLabel}>en</Text>
-      <Text style={styles.langLabel}>¿{flashcard.language}?</Text>
-      <TouchableOpacity
-        style={[
-          styles.speakButton,
-          {
-            backgroundColor: isSpeaking
-              ? ColorPalette.CTA_PRIMARY
-              : ColorPalette.PRIMARY,
-          },
-        ]}
-        onPress={onSpeakPress}>
-        <Ionicon name="ios-mic" size={64} color="#FFFFFF" />
-      </TouchableOpacity>
-    </View>
+    )
   );
 }
 

@@ -14,6 +14,7 @@ import TranslatePhotoScreen from './screens/TranslatePhotoScreen/TranslatePhotoS
 import BottomDrawer from './common/components/BottomDrawer';
 import CreateFlashcardScreen from './screens/CreateFlashcardScreen/CreateFlashcardScreenView';
 import PracticeScreen from './screens/PracticeScreen/PracticeScreenView';
+import Alert from './common/components/Alert';
 
 useScreens();
 
@@ -116,6 +117,7 @@ export default function App() {
     <>
       <AppContainer />
       <BottomDrawer />
+      <Alert />
     </>
   );
 }

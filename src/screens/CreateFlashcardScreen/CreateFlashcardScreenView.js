@@ -8,6 +8,7 @@ import {useDimensions} from 'react-native-hooks';
 import {useMemo} from 'react';
 import FlippedDraftFlashcard from '../../common/components/FlippedDraftFlashcard';
 import FlashcardController from '../../controllers/FlashcardController';
+import Alert from '../../common/components/Alert';
 
 function CreateFlashcardScreenView() {
   const navigation = useNavigation();
@@ -24,6 +25,15 @@ function CreateFlashcardScreenView() {
       uri: image.uri,
       language,
       translatedText,
+    });
+
+    Alert.show({
+      title: 'Éxito',
+      content: '¡Tu flashcard ha sido creada!',
+      hasButton: true,
+      onPress: () => {
+        navigation.popToTop();
+      },
     });
   };
 
