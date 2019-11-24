@@ -33,10 +33,10 @@ function FlashcardsListView() {
       renderItem={({item}) => (
         <Flashcard
           id={item.id}
-          title={item.text}
-          lang={item.language}
+          text={item.text}
+          language={item.language}
           uri={item.uri}
-          trad={item.translatedText}
+          translatedText={item.translatedText}
           onDelete={onFlashcardDelete}
         />
       )}

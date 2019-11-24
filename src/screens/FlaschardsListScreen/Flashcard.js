@@ -8,7 +8,7 @@ import BottomDrawer from '../../common/components/BottomDrawer';
 import Button from '../../common/components/Button';
 import TextToSpeechController from '../../controllers/TextToSpeechController';
 
-function Flashcard({id, uri, title, lang, trad, onDelete}) {
+function Flashcard({id, uri, text, language, translatedText, onDelete}) {
   const [flipped, setFlipped] = useState(false);
 
   const onFlashcardPress = () => {
@@ -20,11 +20,11 @@ function Flashcard({id, uri, title, lang, trad, onDelete}) {
   };
 
   const onAudioPress = () => {
-    TextToSpeechController.speak(trad, lang);
+    TextToSpeechController.speak(translatedText, language);
   };
   const onLongPress = () => {
     BottomDrawer.show({
-      title: title,
+      title: text,
       content: (
         <View style={{alignItems: 'center'}}>
           <Button
@@ -47,18 +47,18 @@ function Flashcard({id, uri, title, lang, trad, onDelete}) {
       {flipped ? (
         <View style={styles.textContainer}>
           <View style={styles.header}>
-            <Text style={styles.backTitle}>{trad}</Text>
+            <Text style={styles.backTitle}>{translatedText}</Text>
             <TouchableOpacity onPress={onAudioPress}>
               <Ionicon name="ios-volume-high" size={36} />
             </TouchableOpacity>
           </View>
-          <Text>{lang}</Text>
+          <Text>{language}</Text>
         </View>
       ) : (
         <>
           <Image style={styles.image} source={{uri}} width={150} />
           <View style={styles.textContainer}>
-            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.title}>{text}</Text>
           </View>
         </>
       )}
