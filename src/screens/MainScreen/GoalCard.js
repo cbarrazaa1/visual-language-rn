@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#EFEFEF',
     borderRadius: 8,
     height: 16,
+    ...elevationShadowStyle(1),
   },
   fullProgress: {
     backgroundColor: ColorPalette.PRIMARY,
