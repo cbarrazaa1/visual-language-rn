@@ -18,6 +18,11 @@ function speak(text, language) {
   tts.speak(text);
 }
 
+function convertLanguageToLocale(language) {
+  return languages[language];
+}
+
 export default {
   speak,
+  convertLanguageToLocale,
 };
