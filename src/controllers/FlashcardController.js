@@ -31,4 +31,13 @@ async function readFlashcards() {
   } catch {}
 }
 
-export default {saveFlashcard, readFlashcards};
+async function deleteFlashcard(id) {
+  const flashcards = await readFlashcards();
+  const result = flashcards.filter(flashcard => flashcard.id !== id);
+
+  try {
+    await AsyncStorage.setItem(FLASHCARD_KEY, JSON.stringify(result));
+  } catch {}
+}
+
+export default {saveFlashcard, readFlashcards, deleteFlashcard};
