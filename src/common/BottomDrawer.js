@@ -1,25 +1,14 @@
 import * as React from 'react';
-import {
-  Animated,
-  View,
-  StyleSheet,
-  Text,
-  Easing,
-  StatusBar,
-} from 'react-native';
-import {useEffect, useContext, useMemo} from 'react';
+import {Animated, View, StyleSheet, Text, Easing} from 'react-native';
+import {useEffect, useMemo} from 'react';
 import {useDimensions} from 'react-native-hooks';
 import {useAnimatedValue} from '../common/useAnimatedValue';
-import BottomDrawerContext, {
-  BottomDrawerProvider,
-} from '../context/BottomDrawerContext';
 
 export const TITLE_CONTAINER_HEIGHT = 50;
 
 function BottomDrawerComponent({title, content, offsetY}) {
-  const {setHeight, setOffsetY} = useContext(BottomDrawerContext);
   const drawerState = useAnimatedValue(0);
-  const {height} = useDimensions().window;
+  const {height} = useDimensions().screen;
   const totalOffsetY = useMemo(() => height / 3 + (offsetY || 0), [
     height,
     offsetY,
@@ -33,11 +22,6 @@ function BottomDrawerComponent({title, content, offsetY}) {
       useNativeDriver: true,
     }).start();
   }, [drawerState]);
-
-  useEffect(() => {
-    setHeight(totalOffsetY);
-    setOffsetY(offsetY);
-  }, [offsetY, setOffsetY, totalOffsetY, setHeight]);
 
   const onHideDrawer = () => {
     Animated.timing(drawerState, {
@@ -72,12 +56,12 @@ function BottomDrawerComponent({title, content, offsetY}) {
                   inputRange: [0, 1],
                   outputRange: [
                     height,
-                    height - totalOffsetY - TITLE_CONTAINER_HEIGHT,
+                    height - (totalOffsetY + TITLE_CONTAINER_HEIGHT),
                   ],
                 }),
               },
             ],
-            height: totalOffsetY + TITLE_CONTAINER_HEIGHT,
+            height: totalOffsetY,
           },
         ]}>
         <View style={styles.titleContainer}>

@@ -36,7 +36,7 @@ function LanguageSelector({onLanguageChange}) {
           onSelectLanguage={language => onSelectLanguage(language)}
         />
       ),
-      offsetY: 130,
+      offsetY: 100,
     });
   };
 

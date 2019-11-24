@@ -12,7 +12,6 @@ import TakePhotoScreen from './screens/TakePhotoScreen/TakePhotoScreenView';
 import RecognizedPhotoScreen from './screens/RecognizedPhotoScreen/RecognizedPhotoScreenView';
 import TranslatePhotoScreen from './screens/TranslatePhotoScreen/TranslatePhotoScreenView';
 import BottomDrawer from './common/BottomDrawer';
-import {BottomDrawerContextProvider} from './context/BottomDrawerContext';
 useScreens();
 
 const defaultStackNavigationOptions = ({navigation}) => ({
@@ -105,9 +104,9 @@ const AppContainer = createAppContainer(AppNavigator);
 
 export default function App() {
   return (
-    <BottomDrawerContextProvider>
+    <>
       <AppContainer />
       <BottomDrawer />
-    </BottomDrawerContextProvider>
+    </>
   );
 }

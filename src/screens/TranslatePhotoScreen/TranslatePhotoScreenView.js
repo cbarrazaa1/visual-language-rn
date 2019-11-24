@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {ScrollView, View, Text, StyleSheet} from 'react-native';
 import Button from '../../common/Button';
-import {useState, useEffect, useMemo} from 'react';
+import {useState, useMemo} from 'react';
 import {useNavigation, useNavigationParam} from 'react-navigation-hooks';
 import DraftFlashcard from './DraftFlashcard';
 import ColorPalette from '../../common/ColorPalette';
@@ -17,8 +17,8 @@ function TranslatePhotoSreenView() {
   const image = useNavigationParam('image');
   const buttonSize = useMemo(() => screenWidth, [screenWidth]);
 
-  const onLanguageChange = language => {
-    setLanguage(language);
+  const onLanguageChange = lang => {
+    setLanguage(lang);
   };
 
   const onTranslatePress = async () => {
