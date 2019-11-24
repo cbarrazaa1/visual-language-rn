@@ -9,8 +9,13 @@ import GoalCard from './GoalCard';
 
 function MainScreenView() {
   const navigation = useNavigation();
+
   const onTakePhotoPress = () => {
     navigation.navigate('TakePhoto');
+  };
+
+  const onPracticePress = () => {
+    navigation.navigate('Practice');
   };
 
   return (
@@ -25,7 +30,7 @@ function MainScreenView() {
         <ActionButton
           title="Practicar"
           icon={<MaterialIcon name="style" size={64} color="#FFFFFF" />}
-          onPress={() => null}
+          onPress={onPracticePress}
           color={ColorPalette.CTA_SECONDARY}
         />
       </View>

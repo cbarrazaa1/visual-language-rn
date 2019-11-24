@@ -13,6 +13,8 @@ import RecognizedPhotoScreen from './screens/RecognizedPhotoScreen/RecognizedPho
 import TranslatePhotoScreen from './screens/TranslatePhotoScreen/TranslatePhotoScreenView';
 import BottomDrawer from './common/components/BottomDrawer';
 import CreateFlashcardScreen from './screens/CreateFlashcardScreen/CreateFlashcardScreenView';
+import PracticeScreen from './screens/PracticeScreen/PracticeScreenView';
+
 useScreens();
 
 const defaultStackNavigationOptions = ({navigation}) => ({
@@ -41,6 +43,9 @@ const MainStack = createStackNavigator(
     },
     CreateFlashcard: {
       screen: CreateFlashcardScreen,
+    },
+    Practice: {
+      screen: PracticeScreen,
     },
   },
   {
