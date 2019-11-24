@@ -7,6 +7,7 @@ import Button from '../../common/components/Button';
 import {useDimensions} from 'react-native-hooks';
 import {useMemo} from 'react';
 import FlippedDraftFlashcard from '../../common/components/FlippedDraftFlashcard';
+import FlashcardController from '../../controllers/FlashcardController';
 
 function CreateFlashcardScreenView() {
   const navigation = useNavigation();
@@ -17,7 +18,14 @@ function CreateFlashcardScreenView() {
   const screenWidth = useDimensions().window.width;
   const buttonSize = useMemo(() => screenWidth - 40, [screenWidth]);
 
-  const onCreatePress = () => {};
+  const onCreatePress = async () => {
+    await FlashcardController.saveFlashcard({
+      text,
+      uri: image.uri,
+      language,
+      translatedText,
+    });
+  };
 
   const onBackPress = () => {
     navigation.goBack();
