@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
-    //alignItems: 'center',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   image: {
