@@ -6,7 +6,6 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from 'react-navigation-hooks';
 import GoalCard from './GoalCard';
-import FlashcardController from '../../controllers/FlashcardController';
 
 function MainScreenView() {
   const navigation = useNavigation();

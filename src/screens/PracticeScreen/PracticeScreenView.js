@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import ColorPalette from '../../common/ColorPalette';
-import {useState, useEffect, useMemo, useRef, useCallback} from 'react';
+import {useState, useEffect, useMemo, useRef} from 'react';
 import {elevationShadowStyle} from '../../common/StylesHelper';
 import {useDimensions} from 'react-native-hooks';
 import DraftFlashcard from '../../common/components/DraftFlashcard';
