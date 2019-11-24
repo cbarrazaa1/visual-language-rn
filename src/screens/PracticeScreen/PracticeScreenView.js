@@ -10,6 +10,7 @@ import Voice from 'react-native-voice';
 import TextToSpeechController from '../../controllers/TextToSpeechController';
 import FlashcardController from '../../controllers/FlashcardController';
 import Alert from '../../common/components/Alert';
+import {useInterval} from '../../common/hooks/useInterval';
 
 function PracticeScreenView() {
   const [time, setTime] = useState(10);
@@ -20,6 +21,12 @@ function PracticeScreenView() {
   const screenWidth = useDimensions().screen.width;
   const barWidth = useMemo(() => screenWidth - 30, [screenWidth]);
   const actualWidth = useMemo(() => (barWidth * time) / 10, [time, barWidth]);
+
+  useInterval(() => {
+    if (time > 0) {
+      setTime(prev => prev - 1);
+    }
+  }, 1000);
 
   useEffect(() => {
     async function getFlashcards() {
@@ -37,23 +44,24 @@ function PracticeScreenView() {
     Voice.onSpeechStart = onSpeechStart;
     Voice.onSpeechEnd = onSpeechEnd;
 
-    // start timer
-    const timer = setInterval(() => {
-      setTime(prev => prev - 1);
-    }, 1000);
-
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
-      clearTimeout(timer);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (time < 0) {
-      setTime(10);
+    if (time <= 0) {
+      Alert.show({
+        title: '¡Incorrecto!',
+        content: `La respuesta era ${flashcard.translatedText}.`,
+        hasButton: true,
+        onPress: () => {
+          setTime(10);
+          generateRandomFlashcard();
+        },
+      });
     }
-  }, [time]);
+  }, [time, flashcard]);
 
   useEffect(() => {
     Voice.onSpeechResults = onSpeechResults;
@@ -86,14 +94,18 @@ function PracticeScreenView() {
       )
     ) {
       Alert.show({
-        title: 'Correcto!',
+        title: '¡Correcto!',
         hasButton: false,
         hideTimer: 2000,
         titleColor: ColorPalette.CTA_PRIMARY,
+        onHide: () => {
+          generateRandomFlashcard();
+          setTime(10);
+        },
       });
     } else {
       Alert.show({
-        title: 'Incorrecto!',
+        title: '¡Incorrecto!',
         hasButton: false,
         hideTimer: 2000,
         titleColor: ColorPalette.CTA_CANCEL,

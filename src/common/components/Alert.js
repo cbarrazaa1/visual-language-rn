@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {Animated, View, StyleSheet, Text, Easing} from 'react-native';
-import {useDimensions} from 'react-native-hooks';
 import {useAnimatedValue} from '../hooks/useAnimatedValue';
 import {useEffect} from 'react';
 import Button from './Button';
@@ -14,9 +13,9 @@ function AlertComponent({
   hasButton,
   onPress,
   hideTimer,
+  onHide,
 }) {
   const alertState = useAnimatedValue(0);
-  const screenWidth = useDimensions().window.width;
 
   useEffect(() => {
     Animated.timing(alertState, {
@@ -27,8 +26,12 @@ function AlertComponent({
     }).start();
 
     if (hideTimer != null) {
-      setTimeout(onHideAlert, hideTimer);
+      setTimeout(() => {
+        onHideAlert();
+        onHide != null && onHide();
+      }, hideTimer);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [alertState, hideTimer]);
 
   const onHideAlert = () => {
@@ -144,6 +147,7 @@ class Alert extends React.PureComponent {
       hasButton: false,
       onPress: null,
       hideTimer: null,
+      onHide: null,
     };
   }
 
@@ -158,6 +162,7 @@ class Alert extends React.PureComponent {
           hasButton={this.state.hasButton}
           onPress={this.state.onPress}
           hideTimer={this.state.hideTimer}
+          onHide={this.state.onHide}
         />
       )
     );
@@ -173,6 +178,7 @@ class Alert extends React.PureComponent {
       hasButton: options.hasButton,
       onPress: options.onPress,
       hideTimer: options.hideTimer,
+      onHide: options.onHide,
     });
   }
 
