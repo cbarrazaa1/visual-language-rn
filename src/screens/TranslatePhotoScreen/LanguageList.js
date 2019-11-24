@@ -32,7 +32,7 @@ function LanguageList({languages, currentSelectedLanguage, onSelectLanguage}) {
   };
 
   return (
-    <View style={{height: containerHeight}}>
+    <View style={{flex: 1}}>
       <ScrollView
         style={styles.root}
         contentContainerStyle={styles.rootContent}>

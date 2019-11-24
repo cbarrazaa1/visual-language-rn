@@ -1,5 +1,12 @@
 import * as React from 'react';
-import {Animated, View, StyleSheet, Text, Easing} from 'react-native';
+import {
+  Animated,
+  View,
+  StyleSheet,
+  Text,
+  Easing,
+  StatusBar,
+} from 'react-native';
 import {useEffect, useContext, useMemo} from 'react';
 import {useDimensions} from 'react-native-hooks';
 import {useAnimatedValue} from '../common/useAnimatedValue';
@@ -12,7 +19,7 @@ export const TITLE_CONTAINER_HEIGHT = 50;
 function BottomDrawerComponent({title, content, offsetY}) {
   const {setHeight, setOffsetY} = useContext(BottomDrawerContext);
   const drawerState = useAnimatedValue(0);
-  const {height} = useDimensions().screen;
+  const {height} = useDimensions().window;
   const totalOffsetY = useMemo(() => height / 3 + (offsetY || 0), [
     height,
     offsetY,
@@ -63,10 +70,14 @@ function BottomDrawerComponent({title, content, offsetY}) {
               {
                 translateY: drawerState.interpolate({
                   inputRange: [0, 1],
-                  outputRange: [height, height - totalOffsetY],
+                  outputRange: [
+                    height,
+                    height - totalOffsetY - TITLE_CONTAINER_HEIGHT,
+                  ],
                 }),
               },
             ],
+            height: totalOffsetY + TITLE_CONTAINER_HEIGHT,
           },
         ]}>
         <View style={styles.titleContainer}>

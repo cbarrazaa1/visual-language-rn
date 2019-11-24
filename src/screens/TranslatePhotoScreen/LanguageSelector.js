@@ -13,7 +13,9 @@ const languages = {
   Italiano: 'it',
   Portugués: 'pt',
   Chino: 'zh',
-  Hebrew: 'he',
+  Japonés: 'ja',
+  Coreano: 'ko',
+  Hindú: 'hi',
 };
 
 function LanguageSelector({onLanguageChange}) {
