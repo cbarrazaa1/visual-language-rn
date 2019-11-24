@@ -6,6 +6,7 @@ import ColorPalette from '../../common/ColorPalette';
 import Button from '../../common/components/Button';
 import {useDimensions} from 'react-native-hooks';
 import {useMemo} from 'react';
+import FlippedDraftFlashcard from '../../common/components/FlippedDraftFlashcard';
 
 function CreateFlashcardScreenView() {
   const navigation = useNavigation();
@@ -25,6 +26,10 @@ function CreateFlashcardScreenView() {
   return (
     <ScrollView style={styles.root} contentContainerStyle={styles.rootContent}>
       <DraftFlashcard image={image} text={text} />
+      <FlippedDraftFlashcard
+        translatedText={translatedText}
+        language={language}
+      />
       <View style={styles.buttonContainer}>
         <Button
           style={[styles.button, {width: buttonSize}]}

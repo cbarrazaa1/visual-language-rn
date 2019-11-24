@@ -9,6 +9,18 @@ import LanguageSelector from './LanguageSelector';
 import {useDimensions} from 'react-native-hooks';
 import GoogleAPIController from '../../controllers/GoogleAPIController';
 
+const languages = {
+  en: 'Inglés',
+  fr: 'Francés',
+  de: 'Alemán',
+  it: 'Italiano',
+  pt: 'Portugués',
+  zh: 'Chino',
+  ja: 'Japonés',
+  ko: 'Coreano',
+  hi: 'Hindú',
+};
+
 function TranslatePhotoSreenView() {
   const [language, setLanguage] = useState('en');
   const screenWidth = useDimensions().window.width;
@@ -30,7 +42,7 @@ function TranslatePhotoSreenView() {
     navigation.navigate('CreateFlashcard', {
       text: option,
       image,
-      language,
+      language: languages[language],
       translatedText: res,
     });
   };
