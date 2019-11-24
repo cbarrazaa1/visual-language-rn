@@ -6,6 +6,7 @@ import ColorPalette from '../../common/ColorPalette';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import BottomDrawer from '../../common/components/BottomDrawer';
 import Button from '../../common/components/Button';
+import TextToSpeechController from '../../controllers/TextToSpeechController';
 
 function Flashcard({id, uri, title, lang, trad, onDelete}) {
   const [flipped, setFlipped] = useState(false);
@@ -18,6 +19,9 @@ function Flashcard({id, uri, title, lang, trad, onDelete}) {
     onDelete(id);
   };
 
+  const onAudioPress = () => {
+    TextToSpeechController.speak(trad, lang);
+  };
   const onLongPress = () => {
     BottomDrawer.show({
       title: title,
@@ -44,7 +48,9 @@ function Flashcard({id, uri, title, lang, trad, onDelete}) {
         <View style={styles.textContainer}>
           <View style={styles.header}>
             <Text style={styles.backTitle}>{trad}</Text>
-            <Ionicon name="ios-volume-high" size={44} />
+            <TouchableOpacity onPress={onAudioPress}>
+              <Ionicon name="ios-volume-high" size={36} />
+            </TouchableOpacity>
           </View>
           <Text>{lang}</Text>
         </View>
