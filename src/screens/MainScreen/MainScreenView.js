@@ -1,15 +1,21 @@
 import * as React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text, ScrollView} from 'react-native';
 import ActionButton from './ActionButton';
 import ColorPalette from '../../common/ColorPalette';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from 'react-navigation-hooks';
+import GoalCard from './GoalCard';
 
 function MainScreenView() {
   const navigation = useNavigation();
+
   const onTakePhotoPress = () => {
     navigation.navigate('TakePhoto');
+  };
+
+  const onPracticePress = () => {
+    navigation.navigate('Practice');
   };
 
   return (
@@ -24,10 +30,27 @@ function MainScreenView() {
         <ActionButton
           title="Practicar"
           icon={<MaterialIcon name="style" size={64} color="#FFFFFF" />}
-          onPress={() => null}
+          onPress={onPracticePress}
           color={ColorPalette.CTA_SECONDARY}
         />
       </View>
+      <Text style={styles.goalTitle}>Metas de hoy</Text>
+      <ScrollView
+        style={styles.goalList}
+        contentContainerStyle={styles.goalListContent}>
+        <GoalCard
+          goalName="Tiempo de práctica"
+          subtitle="minutos"
+          value={15}
+          maxValue={30}
+        />
+        <GoalCard
+          goalName="Flashcards nuevas"
+          subtitle="creadas"
+          value={1}
+          maxValue={3}
+        />
+      </ScrollView>
     </View>
   );
 }
@@ -46,6 +69,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     paddingTop: 12,
+    height: '30%',
+  },
+  goalTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginLeft: 12,
+    marginTop: 16,
+  },
+  goalList: {
+    height: '70%',
+  },
+  goalListContent: {
+    paddingTop: 8,
+    paddingHorizontal: 12,
+    flexGrow: 1,
   },
 });
 
