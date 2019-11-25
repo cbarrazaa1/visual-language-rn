@@ -1,3 +1,9 @@
+/*
+  Visual Learning
+  App.js
+
+  Copyright (c) 2019
+*/
 import * as React from 'react';
 import {useScreens} from 'react-native-screens';
 import Ionicon from 'react-native-vector-icons/Ionicons';
