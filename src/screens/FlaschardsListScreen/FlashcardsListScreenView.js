@@ -18,7 +18,11 @@ function FlashcardsListView() {
       setFlashcards(await FlashcardController.readFlashcards());
     }
     getFlashcards();
-  }, []);
+
+    navigation.addListener('didFocus', () => {
+      getFlashcards();
+    });
+  }, [navigation]);
 
   const onFlashcardDelete = async id => {
     await FlashcardController.deleteFlashcard(id);
