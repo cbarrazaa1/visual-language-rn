@@ -76,19 +76,17 @@ function RecognizedPhotoScreenView() {
             );
           })
         ) : (
-          ['Profesor inspirador', 'Mejorado', 'Better Reloaded'].map(
-            (obj, i) => {
-              return (
-                <Button
-                  key={i}
-                  style={[styles.optionButton, {width: imageSize + 20}]}
-                  text={obj}
-                  onPress={() => onSelectOption(obj)}
-                  color={ColorPalette.CTA_PRIMARY}
-                />
-              );
-            },
-          )
+          ['Profesor inspirador', 'Better Reloaded', 'ZAZ'].map((obj, i) => {
+            return (
+              <Button
+                key={i}
+                style={[styles.optionButton, {width: imageSize + 20}]}
+                text={obj}
+                onPress={() => onSelectOption(obj)}
+                color={ColorPalette.CTA_PRIMARY}
+              />
+            );
+          })
         )}
         <Button
           style={[styles.backButton, {width: imageSize + 20}]}

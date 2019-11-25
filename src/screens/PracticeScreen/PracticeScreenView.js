@@ -23,7 +23,7 @@ function PracticeScreenView() {
   const actualWidth = useMemo(() => (barWidth * time) / 10, [time, barWidth]);
 
   useInterval(() => {
-    if (time > 0) {
+    if (time > 0 && !isSpeaking) {
       setTime(prev => prev - 1);
     }
   }, 1000);
