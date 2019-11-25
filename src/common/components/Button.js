@@ -12,7 +12,7 @@ import {elevationShadowStyle} from '../StylesHelper';
   Button
   React Functional Component
 
-  Serves as a list of available languages.
+  Button with global styles for the app.
 
   Props: {
     text: string,

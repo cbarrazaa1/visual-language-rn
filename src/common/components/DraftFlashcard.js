@@ -12,7 +12,7 @@ import {elevationShadowStyle} from '../StylesHelper';
   DraftFlashcard.js
   React Functional Component
 
-  Serves as a list of available languages.
+  A draft for a flashcard that is about to be created.
 
   Props: {
     text: string,

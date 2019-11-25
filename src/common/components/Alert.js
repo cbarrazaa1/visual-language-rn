@@ -15,7 +15,7 @@ import ColorPalette from '../ColorPalette';
   AlertComponent
   React Functional Component
 
-  Serves as a list of available languages.
+  Serves as a full-screen Alert component.
 
   Props: {
     title: string,
@@ -150,6 +150,10 @@ const styles = StyleSheet.create({
   },
 });
 
+/*
+  Alert
+  Singleton class to manage the AlertComponent
+*/
 class Alert extends React.PureComponent {
   static show(options) {
     Alert._ref._show(options);

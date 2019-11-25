@@ -1,9 +1,27 @@
+/*
+  Visual Learning
+  FlippedDraftFlashcard.js
+
+  Copyright (c) 2019
+*/
 import * as React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {elevationShadowStyle} from '../StylesHelper';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import TextToSpeechController from '../../controllers/TextToSpeechController';
 
+/*
+  FlippedDraftFlashcard
+  React Functional Component
+
+  The flipped version of a draft flashcard.
+
+  Props: {
+    language: string,
+    translatedText: string
+  }
+  State: {}
+*/
 function FlippedDraftFlashcard({language, translatedText}) {
   const onAudioPress = () => {
     TextToSpeechController.speak(translatedText, language);

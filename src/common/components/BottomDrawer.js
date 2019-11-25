@@ -16,7 +16,7 @@ export const TITLE_CONTAINER_HEIGHT = 50;
   BottomDrawerComponent
   React Functional Component
 
-  Serves as a list of available languages.
+  Serves as a bottom drawer to be shown anywhere in the app.
 
   Props: {
     title: string,
@@ -120,6 +120,10 @@ const styles = StyleSheet.create({
   },
 });
 
+/*
+  BottomDrawer
+  Singleton class to manage the BottomDrawerComponent
+*/
 class BottomDrawer extends React.PureComponent {
   static show(options) {
     BottomDrawer._ref._show(options);
