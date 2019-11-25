@@ -113,6 +113,8 @@ const AppNavigator = createBottomTabNavigator(
 );
 const AppContainer = createAppContainer(AppNavigator);
 
+console.disableYellowBox = true;
+
 export default function App() {
   return (
     <>
