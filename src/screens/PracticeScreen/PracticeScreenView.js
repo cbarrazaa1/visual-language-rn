@@ -52,7 +52,7 @@ function PracticeScreenView() {
   useEffect(() => {
     if (time <= 0) {
       Alert.show({
-        title: '¡Incorrecto!',
+        title: '¡Se acabó el tiempo!',
         content: `La respuesta era ${flashcard.translatedText}.`,
         hasButton: true,
         onPress: () => {
@@ -105,7 +105,7 @@ function PracticeScreenView() {
       });
     } else {
       Alert.show({
-        title: '¡Incorrecto!',
+        title: 'Intenta de nuevo!',
         hasButton: false,
         hideTimer: 2000,
         titleColor: ColorPalette.CTA_CANCEL,

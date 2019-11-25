@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, StyleSheet, Text, ScrollView} from 'react-native';
+import {View, StyleSheet, Text, ScrollView, Platform} from 'react-native';
 import ActionButton from './ActionButton';
 import ColorPalette from '../../common/ColorPalette';
 import Ionicon from 'react-native-vector-icons/Ionicons';
@@ -71,6 +71,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     paddingTop: 12,
     height: '30%',
+    marginVertical: Platform.select({
+      ios: 8,
+      android: 0,
+    }),
   },
   goalTitle: {
     fontSize: 16,

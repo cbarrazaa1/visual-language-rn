@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Platform} from 'react-native';
 import {elevationShadowStyle} from '../../common/StylesHelper';
 import {useComponentSize} from '../../common/hooks/useComponentSize';
 import {useMemo} from 'react';

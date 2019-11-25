@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Animated, View, StyleSheet, Text, Easing} from 'react-native';
+import {Animated, View, StyleSheet, Text, Easing, Platform} from 'react-native';
 import {useEffect, useMemo} from 'react';
 import {useDimensions} from 'react-native-hooks';
 import {useAnimatedValue} from '../hooks/useAnimatedValue';
@@ -61,7 +61,12 @@ function BottomDrawerComponent({title, content, offsetY}) {
                 }),
               },
             ],
-            height: totalOffsetY,
+            height:
+              totalOffsetY +
+              Platform.select({
+                ios: TITLE_CONTAINER_HEIGHT,
+                android: 0,
+              }),
           },
         ]}>
         <View style={styles.titleContainer}>

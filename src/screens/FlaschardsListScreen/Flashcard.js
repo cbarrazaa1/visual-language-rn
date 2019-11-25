@@ -9,6 +9,9 @@ import Button from '../../common/components/Button';
 import TextToSpeechController from '../../controllers/TextToSpeechController';
 
 function Flashcard({id, uri, text, language, translatedText, onDelete}) {
+  const upperCaseText = text.charAt(0).toUpperCase() + text.substring(1);
+  const upperCaseTranslatedText =
+    translatedText.charAt(0).toUpperCase() + translatedText.substring(1);
   const [flipped, setFlipped] = useState(false);
 
   const onFlashcardPress = () => {
@@ -47,7 +50,7 @@ function Flashcard({id, uri, text, language, translatedText, onDelete}) {
       {flipped ? (
         <View style={styles.textContainer}>
           <View style={styles.header}>
-            <Text style={styles.backTitle}>{translatedText}</Text>
+            <Text style={styles.backTitle}>{upperCaseTranslatedText}</Text>
             <TouchableOpacity onPress={onAudioPress}>
               <Ionicon name="ios-volume-high" size={36} />
             </TouchableOpacity>
@@ -58,7 +61,7 @@ function Flashcard({id, uri, text, language, translatedText, onDelete}) {
         <>
           <Image style={styles.image} source={{uri}} width={150} />
           <View style={styles.textContainer}>
-            <Text style={styles.title}>{text}</Text>
+            <Text style={styles.title}>{upperCaseText}</Text>
           </View>
         </>
       )}
