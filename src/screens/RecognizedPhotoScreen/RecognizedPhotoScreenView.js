@@ -1,3 +1,9 @@
+/*
+  Visual Learning
+  RecognizedPhotoScreenView.js
+
+  Copyright (c) 2019
+*/
 import * as React from 'react';
 import {
   ActivityIndicator,
@@ -14,11 +20,25 @@ import ImaggaAPIController from '../../controllers/ImaggaAPIController';
 import Button from '../../common/components/Button';
 import ColorPalette from '../../common/ColorPalette';
 
+/*
+  RecognizedPhotoScreenView
+  React Functional Component
+
+  Allow the user to pick a possible option for their recognized object.
+
+  Props: {}
+  State: {
+    possibleObjects: Object[],
+    loading: boolean
+  }
+  Navigation Params: {
+    image: URI,
+  }
+*/
 function RecognizedPhotoScreenView() {
   // Main Screen View Controller //
   const screenWidth = useDimensions().window.width;
   const image = useNavigationParam('image');
-  const isMejorado = useNavigationParam('isMejorado');
   const [possibleObjects, setPossibleObjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const imageSize = useMemo(() => screenWidth - 60, [screenWidth]);
@@ -63,7 +83,7 @@ function RecognizedPhotoScreenView() {
       <View style={styles.buttonContainer}>
         {loading ? (
           <ActivityIndicator size="large" />
-        ) : !(isMejorado || false) ? (
+        ) : (
           possibleObjects.map((obj, i) => {
             return (
               <Button
@@ -71,18 +91,6 @@ function RecognizedPhotoScreenView() {
                 style={[styles.optionButton, {width: imageSize + 20}]}
                 text={obj.tag.es}
                 onPress={() => onSelectOption(obj.tag.es)}
-                color={ColorPalette.CTA_PRIMARY}
-              />
-            );
-          })
-        ) : (
-          ['Profesor inspirador', 'Better Reloaded', 'ZAZ'].map((obj, i) => {
-            return (
-              <Button
-                key={i}
-                style={[styles.optionButton, {width: imageSize + 20}]}
-                text={obj}
-                onPress={() => onSelectOption(obj)}
                 color={ColorPalette.CTA_PRIMARY}
               />
             );

@@ -37,6 +37,10 @@ const languages = {
   State: {
     language: string
   }
+  Navigation Params: {
+    option: string,
+    image: URI
+  }
 */
 function TranslatePhotoSreenView() {
   // Translate Photo Screen View Controller //

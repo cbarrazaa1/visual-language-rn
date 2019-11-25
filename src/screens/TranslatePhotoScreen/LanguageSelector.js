@@ -1,3 +1,9 @@
+/*
+  Visual Learning
+  LanguageSelector.js
+
+  Copyright (c) 2019
+*/
 import * as React from 'react';
 import {TouchableOpacity, StyleSheet, Text} from 'react-native';
 import {elevationShadowStyle} from '../../common/StylesHelper';
@@ -18,6 +24,19 @@ const languages = {
   Hindú: 'hi',
 };
 
+/*
+  LanguageSelector
+  React Functional Component
+
+  Allows the user to visualize their current selected language from the list.
+
+  Props: {
+    onLanguageChange: (language: string) => void
+  }
+  State: {
+    selectedLanguage: string
+  }
+*/
 function LanguageSelector({onLanguageChange}) {
   const [selectedLanguage, setSelectedLanguage] = useState('Inglés');
 

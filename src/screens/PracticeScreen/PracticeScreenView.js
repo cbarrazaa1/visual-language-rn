@@ -1,3 +1,9 @@
+/*
+  Visual Learning
+  PracticeScreenView.js
+
+  Copyright (c) 2019
+*/
 import * as React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import ColorPalette from '../../common/ColorPalette';
@@ -12,7 +18,21 @@ import FlashcardController from '../../controllers/FlashcardController';
 import Alert from '../../common/components/Alert';
 import {useInterval} from '../../common/hooks/useInterval';
 
+/*
+  PracticeScreenView
+  React Functional Component
+
+  Allow the user to practice using their previously created flashcards.
+
+  Props: {}
+  State: {
+    time: number,
+    isSpeaking: boolean,
+    flashcard: Object
+  }
+*/
 function PracticeScreenView() {
+  // Practice Screen View Controller //
   const [time, setTime] = useState(10);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [flashcard, setFlashcard] = useState(null);
@@ -116,6 +136,7 @@ function PracticeScreenView() {
     setIsSpeaking(false);
   };
 
+  // Practice Screen View //
   const onSpeakPress = async () => {
     if (isSpeaking) {
       await Voice.stop();

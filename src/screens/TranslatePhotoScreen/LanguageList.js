@@ -1,3 +1,9 @@
+/*
+  Visual Learning
+  LanguageList.js
+
+  Copyright (c) 2019
+*/
 import * as React from 'react';
 import {
   View,
@@ -10,6 +16,21 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 import ColorPalette from '../../common/ColorPalette';
 import {useState} from 'react';
 
+/*
+  TranslatePhotoScreenView
+  React Functional Component
+
+  Serves as a list of available languages.
+
+  Props: {
+    languages: string[],
+    currentSelectedLanguage: string,
+    onSelectLanguage: (language: string) => void
+  }
+  State: {
+    selectedLanguage: string
+  }
+*/
 function LanguageList({languages, currentSelectedLanguage, onSelectLanguage}) {
   const [selectedLanguage, setSelectedLanguage] = useState(
     currentSelectedLanguage,
