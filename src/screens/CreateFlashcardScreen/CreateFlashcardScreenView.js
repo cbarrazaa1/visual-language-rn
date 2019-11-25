@@ -11,6 +11,7 @@ import FlashcardController from '../../controllers/FlashcardController';
 import Alert from '../../common/components/Alert';
 
 function CreateFlashcardScreenView() {
+  // Create Flashcard Screen View Controller //
   const navigation = useNavigation();
   const text = useNavigationParam('text');
   const image = useNavigationParam('image');
@@ -37,6 +38,7 @@ function CreateFlashcardScreenView() {
     });
   };
 
+  // Create Flashcard Screen View //
   const onBackPress = () => {
     navigation.goBack();
   };

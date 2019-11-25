@@ -10,6 +10,7 @@ import GoalCard from './GoalCard';
 function MainScreenView() {
   const navigation = useNavigation();
 
+  // Main Screen View //
   const onTakePhotoPress = () => {
     navigation.navigate('TakePhoto');
   };

@@ -9,6 +9,7 @@ import FlashcardController from '../../controllers/FlashcardController';
 import BottomDrawer from '../../common/components/BottomDrawer';
 
 function FlashcardsListView() {
+  // Flashcard List Screen View Controller //
   const navigation = useNavigation();
   const [flashcards, setFlashcards] = useState([]);
 
@@ -25,6 +26,7 @@ function FlashcardsListView() {
     BottomDrawer.hide();
   };
 
+  // Flashcard List Screen View //
   return (
     <FlatList
       style={styles.root}

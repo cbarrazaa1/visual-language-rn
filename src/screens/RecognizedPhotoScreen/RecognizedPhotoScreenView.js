@@ -15,6 +15,7 @@ import Button from '../../common/components/Button';
 import ColorPalette from '../../common/ColorPalette';
 
 function RecognizedPhotoScreenView() {
+  // Main Screen View Controller //
   const screenWidth = useDimensions().window.width;
   const image = useNavigationParam('image');
   const [possibleObjects, setPossibleObjects] = useState([]);
@@ -38,6 +39,7 @@ function RecognizedPhotoScreenView() {
     }
   }, [possibleObjects]);
 
+  // Main Screen View //
   const onSelectOption = option => {
     navigation.navigate('TranslatePhoto', {option, image});
   };
