@@ -27,7 +27,7 @@ function Flashcard({id, uri, text, language, translatedText, onDelete}) {
   };
   const onLongPress = () => {
     BottomDrawer.show({
-      title: text,
+      title: upperCaseText,
       content: (
         <View style={{alignItems: 'center'}}>
           <Button
