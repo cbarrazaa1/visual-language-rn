@@ -1,3 +1,9 @@
+/*
+  Visual Learning
+  Alert.js
+
+  Copyright (c) 2019
+*/
 import * as React from 'react';
 import {Animated, View, StyleSheet, Text, Easing} from 'react-native';
 import {useAnimatedValue} from '../hooks/useAnimatedValue';
@@ -5,6 +11,24 @@ import {useEffect} from 'react';
 import Button from './Button';
 import ColorPalette from '../ColorPalette';
 
+/*
+  AlertComponent
+  React Functional Component
+
+  Serves as a list of available languages.
+
+  Props: {
+    title: string,
+    titleColor: string,
+    content: string,
+    contentColor: string,
+    hasButton: boolean,
+    onPress: () => void
+    hideTimer: number,
+    onHide: () => void
+  }
+  State: {}
+*/
 function AlertComponent({
   title,
   titleColor,

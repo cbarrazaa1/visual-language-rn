@@ -17,7 +17,7 @@ import ColorPalette from '../../common/ColorPalette';
 import {useState} from 'react';
 
 /*
-  TranslatePhotoScreenView
+  LanguageList
   React Functional Component
 
   Serves as a list of available languages.

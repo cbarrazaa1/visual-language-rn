@@ -1,3 +1,9 @@
+/*
+  Visual Learning
+  BottomDrawer.js
+
+  Copyright (c) 2019
+*/
 import * as React from 'react';
 import {Animated, View, StyleSheet, Text, Easing, Platform} from 'react-native';
 import {useEffect, useMemo} from 'react';
@@ -6,6 +12,19 @@ import {useAnimatedValue} from '../hooks/useAnimatedValue';
 
 export const TITLE_CONTAINER_HEIGHT = 50;
 
+/*
+  BottomDrawerComponent
+  React Functional Component
+
+  Serves as a list of available languages.
+
+  Props: {
+    title: string,
+    content: string,
+    offsetY: number
+  }
+  State: {}
+*/
 function BottomDrawerComponent({title, content, offsetY}) {
   const drawerState = useAnimatedValue(0);
   const {height} = useDimensions().screen;

@@ -1,7 +1,27 @@
+/*
+  Visual Learning
+  Button.js
+
+  Copyright (c) 2019
+*/
 import * as React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {elevationShadowStyle} from '../StylesHelper';
 
+/*
+  Button
+  React Functional Component
+
+  Serves as a list of available languages.
+
+  Props: {
+    text: string,
+    onPress: () => void,
+    color: string,
+    style: View Style Prop
+  }
+  State: {}
+*/
 function Button({text, onPress, color, style}) {
   return (
     <TouchableOpacity

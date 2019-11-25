@@ -1,7 +1,25 @@
+/*
+  Visual Learning
+  DraftFlashcard.js
+
+  Copyright (c) 2019
+*/
 import * as React from 'react';
 import {Image, View, Text, StyleSheet} from 'react-native';
 import {elevationShadowStyle} from '../StylesHelper';
 
+/*
+  DraftFlashcard.js
+  React Functional Component
+
+  Serves as a list of available languages.
+
+  Props: {
+    text: string,
+    image: URI
+  }
+  State: {}
+*/
 function DraftFlashcard({text, image}) {
   return (
     <View style={styles.root}>

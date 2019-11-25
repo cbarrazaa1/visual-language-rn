@@ -24,13 +24,12 @@ import Alert from '../../common/components/Alert';
   Allows the user create a flashcard of the object with an image and translated text.
 
   Props: {}
-  State: {
-    Navigation Params: {
+  State: {}
+  Navigation Params: {
       text: string,
       image: URI,
       language: string,
       translatedText: string,
-    }
   }
 */
 
