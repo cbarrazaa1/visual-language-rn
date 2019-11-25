@@ -3,9 +3,12 @@ import {TouchableOpacity, StyleSheet} from 'react-native';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import {elevationShadowStyle} from '../../common/StylesHelper';
 
-function TakePhotoButton({onPress}) {
+function TakePhotoButton({onPress, onLongPress}) {
   return (
-    <TouchableOpacity style={styles.root} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.root}
+      onPress={onPress}
+      onLongPress={onLongPress}>
       <Ionicon name="md-camera" size={48} color="#000000" />
     </TouchableOpacity>
   );

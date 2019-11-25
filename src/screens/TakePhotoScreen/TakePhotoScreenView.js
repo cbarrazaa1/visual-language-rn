@@ -23,6 +23,17 @@ function TakePhotoScreenView() {
     }
   };
 
+  const onTakePhotoMejorado = async () => {
+    try {
+      setIsTakingPhoto(true);
+      const image = await takePicture();
+      navigation.navigate('RecognizedPhoto', {image, isMejorado: true});
+    } catch (err) {
+    } finally {
+      setIsTakingPhoto(false);
+    }
+  };
+
   return (
     <View style={styles.root}>
       {isFocused ? (
@@ -30,7 +41,10 @@ function TakePhotoScreenView() {
       ) : null}
       {!isTakingPhoto && (
         <View style={styles.button}>
-          <TakePhotoButton onPress={onTakePhotoPress} />
+          <TakePhotoButton
+            onPress={onTakePhotoPress}
+            onLongPress={onTakePhotoMejorado}
+          />
         </View>
       )}
     </View>

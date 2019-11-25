@@ -18,6 +18,7 @@ function RecognizedPhotoScreenView() {
   // Main Screen View Controller //
   const screenWidth = useDimensions().window.width;
   const image = useNavigationParam('image');
+  const isMejorado = useNavigationParam('isMejorado');
   const [possibleObjects, setPossibleObjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const imageSize = useMemo(() => screenWidth - 60, [screenWidth]);
@@ -62,7 +63,7 @@ function RecognizedPhotoScreenView() {
       <View style={styles.buttonContainer}>
         {loading ? (
           <ActivityIndicator size="large" />
-        ) : (
+        ) : !(isMejorado || false) ? (
           possibleObjects.map((obj, i) => {
             return (
               <Button
@@ -74,6 +75,20 @@ function RecognizedPhotoScreenView() {
               />
             );
           })
+        ) : (
+          ['Profesor inspirador', 'Mejorado', 'Better Reloaded'].map(
+            (obj, i) => {
+              return (
+                <Button
+                  key={i}
+                  style={[styles.optionButton, {width: imageSize + 20}]}
+                  text={obj}
+                  onPress={() => onSelectOption(obj)}
+                  color={ColorPalette.CTA_PRIMARY}
+                />
+              );
+            },
+          )
         )}
         <Button
           style={[styles.backButton, {width: imageSize + 20}]}
