@@ -1,3 +1,10 @@
+/*
+  Visual Learning
+  CreateFlashcardScreenView.js
+
+  Copyright (c) 2019
+*/
+
 import * as React from 'react';
 import {ScrollView, View, StyleSheet} from 'react-native';
 import {useNavigation, useNavigationParam} from 'react-navigation-hooks';
@@ -9,6 +16,23 @@ import {useMemo} from 'react';
 import FlippedDraftFlashcard from '../../common/components/FlippedDraftFlashcard';
 import FlashcardController from '../../controllers/FlashcardController';
 import Alert from '../../common/components/Alert';
+
+/*
+  CreateFlashcardScreenView
+  React Functional Component
+
+  Allows the user create a flashcard of the object with an image and translated text.
+
+  Props: {}
+  State: {
+    Navigation Params: {
+      text: string,
+      image: URI,
+      language: string,
+      translatedText: string,
+    }
+  }
+*/
 
 function CreateFlashcardScreenView() {
   // Create Flashcard Screen View Controller //

@@ -1,3 +1,10 @@
+/*
+  Visual Learning
+  MainScreenView.js
+
+  Copyright (c) 2019
+*/
+
 import * as React from 'react';
 import {View, StyleSheet, Text, ScrollView, Platform} from 'react-native';
 import ActionButton from './ActionButton';
@@ -7,6 +14,16 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from 'react-navigation-hooks';
 import GoalCard from './GoalCard';
 
+/*
+  MainScreenView
+  React Functional Component
+
+  Allows the user to view the main screen.
+
+  Props: {}
+  State: {}
+  NavigationParams: {}
+*/
 function MainScreenView() {
   const navigation = useNavigation();
 

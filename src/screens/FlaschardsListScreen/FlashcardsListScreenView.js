@@ -1,3 +1,9 @@
+/*
+  Visual Learning
+  FlashcardsListScreenView.js
+
+  Copyright (c) 2019
+*/
 import * as React from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
 import {elevationShadowStyle} from '../../common/StylesHelper';
@@ -8,6 +14,18 @@ import {useEffect, useState} from 'react';
 import FlashcardController from '../../controllers/FlashcardController';
 import BottomDrawer from '../../common/components/BottomDrawer';
 
+/*
+FlashcardsListView
+  React Functional Component
+
+  Allows the user to view the lists of flashcards.
+
+  Props: {}
+  State: {
+    flashcards: Object[],
+  }
+  NavigationParams: {}
+*/
 function FlashcardsListView() {
   // Flashcard List Screen View Controller //
   const navigation = useNavigation();
