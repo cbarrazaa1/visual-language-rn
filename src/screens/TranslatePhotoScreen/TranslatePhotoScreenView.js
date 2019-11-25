@@ -22,16 +22,13 @@ const languages = {
 };
 
 function TranslatePhotoSreenView() {
+  // Translate Photo Screen View Controller //
   const [language, setLanguage] = useState('en');
   const screenWidth = useDimensions().window.width;
   const navigation = useNavigation();
   const option = useNavigationParam('option');
   const image = useNavigationParam('image');
   const buttonSize = useMemo(() => screenWidth - 40, [screenWidth]);
-
-  const onLanguageChange = lang => {
-    setLanguage(lang);
-  };
 
   const onTranslatePress = async () => {
     const res = await GoogleAPIController.getTranslationForText(
@@ -45,6 +42,11 @@ function TranslatePhotoSreenView() {
       language: languages[language],
       translatedText: res,
     });
+  };
+
+  // Translate Photo Screen View //
+  const onLanguageChange = lang => {
+    setLanguage(lang);
   };
 
   const onBackPress = () => {

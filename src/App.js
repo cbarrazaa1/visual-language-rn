@@ -14,6 +14,7 @@ import TranslatePhotoScreen from './screens/TranslatePhotoScreen/TranslatePhotoS
 import BottomDrawer from './common/components/BottomDrawer';
 import CreateFlashcardScreen from './screens/CreateFlashcardScreen/CreateFlashcardScreenView';
 import PracticeScreen from './screens/PracticeScreen/PracticeScreenView';
+import Alert from './common/components/Alert';
 
 useScreens();
 
@@ -57,7 +58,8 @@ const MainStack = createStackNavigator(
 MainStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (
-    navigation.state.routes[navigation.state.index].routeName === 'TakePhoto'
+    navigation.state.routes[navigation.state.index].routeName === 'TakePhoto' ||
+    navigation.state.routes[navigation.state.index].routeName === 'Practice'
   ) {
     tabBarVisible = false;
   }
@@ -116,6 +118,7 @@ export default function App() {
     <>
       <AppContainer />
       <BottomDrawer />
+      <Alert />
     </>
   );
 }

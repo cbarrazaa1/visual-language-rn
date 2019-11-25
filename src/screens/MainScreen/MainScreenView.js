@@ -10,6 +10,7 @@ import GoalCard from './GoalCard';
 function MainScreenView() {
   const navigation = useNavigation();
 
+  // Main Screen View //
   const onTakePhotoPress = () => {
     navigation.navigate('TakePhoto');
   };
@@ -23,7 +24,7 @@ function MainScreenView() {
       <View style={styles.topContainer}>
         <ActionButton
           title="Tomar Foto"
-          icon={<Ionicon name={'md-home'} size={64} color="#FFFFFF" />}
+          icon={<Ionicon name={'md-camera'} size={64} color="#FFFFFF" />}
           onPress={onTakePhotoPress}
           color={ColorPalette.CTA_PRIMARY}
         />
