@@ -77,5 +77,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	 <key>NSMicrophoneUsageDescription</key>
+  <string>For practice mode.</string>
+  <key>NSSpeechRecognitionUsageDescription</key>
+  <string>For Practice mode.</string>
 </dict>
 </plist>

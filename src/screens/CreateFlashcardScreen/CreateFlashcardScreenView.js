@@ -26,7 +26,6 @@ function CreateFlashcardScreenView() {
       language,
       translatedText,
     });
-
     Alert.show({
       title: 'Éxito',
       content: '¡Tu flashcard ha sido creada!',
