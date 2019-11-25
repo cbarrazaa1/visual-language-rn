@@ -1,3 +1,10 @@
+/*
+  Visual Learning
+  ColorPalette.js
+
+  Copyright (c) 2019
+*/
+
 export default {
   PRIMARY: '#6FA2EE',
   CTA_PRIMARY: '#8CD37A',

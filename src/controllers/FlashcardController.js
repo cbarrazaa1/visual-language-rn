@@ -1,8 +1,19 @@
+/*
+  Visual Learning
+  FlashcardController.js
+
+  Copyright (c) 2019
+*/
 import AsyncStorage from '@react-native-community/async-storage';
 import uuid from 'react-native-uuid-generator';
 
 const FLASHCARD_KEY = 'flashcards';
 
+/*
+  saveFlashcard
+  @param {Object} flashcard
+  @return {Promise<void>}
+*/
 async function saveFlashcard(flashcard) {
   flashcard.id = await uuid.getRandomUUID();
 
@@ -20,6 +31,10 @@ async function saveFlashcard(flashcard) {
   } catch {}
 }
 
+/*
+  readFlashcards
+  @return {Promise<Object[]>}
+*/
 async function readFlashcards() {
   try {
     const flashcards = await AsyncStorage.getItem(FLASHCARD_KEY);
@@ -31,6 +46,11 @@ async function readFlashcards() {
   } catch {}
 }
 
+/*
+  deleteFlashcard
+  @param {string} id
+  @return {Promise<void>}
+*/
 async function deleteFlashcard(id) {
   const flashcards = await readFlashcards();
   const result = flashcards.filter(flashcard => flashcard.id !== id);

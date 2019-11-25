@@ -1,3 +1,9 @@
+/*
+  Visual Learning
+  useComponentSize.js
+
+  Copyright (c) 2019
+*/
 import {useState, useCallback} from 'react';
 
 export function useComponentSize() {

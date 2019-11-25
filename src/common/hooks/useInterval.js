@@ -1,3 +1,9 @@
+/*
+  Visual Learning
+  useInterval.js
+
+  Copyright (c) 2019
+*/
 import {useEffect, useRef} from 'react';
 
 export function useInterval(callback, delay) {

@@ -1,3 +1,10 @@
+/*
+  Visual Learning
+  StylesHelper.js
+
+  Copyright (c) 2019
+*/
+
 export function elevationShadowStyle(elevation) {
   return {
     elevation,

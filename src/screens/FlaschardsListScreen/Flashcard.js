@@ -1,3 +1,9 @@
+/*
+  Visual Learning
+  Flashcard.js
+
+  Copyright (c) 2019
+*/
 import * as React from 'react';
 import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
 import {useState} from 'react';
@@ -8,6 +14,24 @@ import BottomDrawer from '../../common/components/BottomDrawer';
 import Button from '../../common/components/Button';
 import TextToSpeechController from '../../controllers/TextToSpeechController';
 
+/*
+  Flashcard
+  React Functional Component
+
+  Acts as a view to style a flashcard.
+
+  Props: {
+    id: string,
+    uri: string,
+    text: string,
+    language: string,
+    translatedText: string,
+    onDelete: (id: string) => void
+  }
+  State: {
+    flipped: boolean
+  }
+*/
 function Flashcard({id, uri, text, language, translatedText, onDelete}) {
   const upperCaseText = text.charAt(0).toUpperCase() + text.substring(1);
   const upperCaseTranslatedText =

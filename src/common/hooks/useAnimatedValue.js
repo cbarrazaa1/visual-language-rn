@@ -1,3 +1,10 @@
+/*
+  Visual Learning
+  useAnimatedValue.js
+
+  Copyright (c) 2019
+*/
+
 import {useRef} from 'react';
 import {Animated} from 'react-native';
 

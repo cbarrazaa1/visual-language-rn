@@ -1,3 +1,9 @@
+/*
+  Visual Learning
+  TextToSpeechController.js
+
+  Copyright (c) 2019
+*/
 import tts from 'react-native-tts';
 
 const languages = {
@@ -12,12 +18,23 @@ const languages = {
   Hindú: 'hi-IN',
 };
 
+/*
+  speak
+  @param {string} text
+  @param {string} language
+  @return {void}
+*/
 function speak(text, language) {
   tts.stop();
   tts.setDefaultLanguage(languages[language]);
   tts.speak(text);
 }
 
+/*
+  convertLanguageToLocale
+  @param {string} language
+  @return {string}
+*/
 function convertLanguageToLocale(language) {
   return languages[language];
 }

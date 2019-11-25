@@ -1,9 +1,29 @@
+/*
+  Visual Learning
+  ActionButton.js
+
+  Copyright (c) 2019
+*/
 import * as React from 'react';
 import {TouchableOpacity, StyleSheet, Text} from 'react-native';
 import {useDimensions} from 'react-native-hooks';
 import {elevationShadowStyle} from '../../common/StylesHelper';
 import {useMemo} from 'react';
 
+/*
+  ActionButton
+  React Functional Component
+
+  Acts as a view to style action buttons in main screen.
+
+  Props: {
+    icon: string,
+    title: string,
+    onPress: () => void,
+    color: string
+  }
+  State: {}
+*/
 function ActionButton({icon, title, onPress, color}) {
   const {width} = useDimensions().window;
   const size = useMemo(() => width / 2 - 14, [width]);

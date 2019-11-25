@@ -1,9 +1,20 @@
+/*
+  Visual Learning
+  ImaggaAPIController.js
+
+  Copyright (c) 2019
+*/
 import RNFS from 'react-native-fs';
 const API_KEY = 'acc_74b580248e8ed72';
 const API_SECRET = 'ac85ceaefb0b4ad6aded52e6ee9b9279';
 const API_AUTH =
   'Basic YWNjXzc0YjU4MDI0OGU4ZWQ3MjphYzg1Y2VhZWZiMGI0YWQ2YWRlZDUyZTZlZTliOTI3OQ==';
 
+/*
+  getObjectRecognitionFromURI
+  @param {string} imageURI
+  @return {Promise<string[]>}
+*/
 async function getObjectRecognitionFromURI(imageURI) {
   // first create the image in the api
   const data = await RNFS.readFile(imageURI, 'base64');

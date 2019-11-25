@@ -1,3 +1,9 @@
+/*
+  Visual Learning
+  GoalCard.js
+
+  Copyright (c) 2019
+*/
 import * as React from 'react';
 import {View, StyleSheet, Text, Platform} from 'react-native';
 import {elevationShadowStyle} from '../../common/StylesHelper';
@@ -5,6 +11,20 @@ import {useComponentSize} from '../../common/hooks/useComponentSize';
 import {useMemo} from 'react';
 import ColorPalette from '../../common/ColorPalette';
 
+/*
+  GoalCard
+  React Functional Component
+
+  Acts as a view for styling a goal card.
+
+  Props: {
+    goalName: string,
+    subtitle: string,
+    value: number,
+    maxValue: number
+  }
+  State: {}
+*/
 function GoalCard({goalName, subtitle, value, maxValue}) {
   const [size, onLayout] = useComponentSize();
   const barWidth = useMemo(() => (size ? size.width - 24 : 0), [size]);

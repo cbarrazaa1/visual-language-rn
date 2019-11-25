@@ -1,8 +1,19 @@
+/*
+  Visual Learning
+  GoalController.js
+
+  Copyright (c) 2019
+*/
 import AsyncStorage from '@react-native-community/async-storage';
 
 const PRACTICE_TIME_KEY = 'PRACTICE_TIME';
 const NEW_FLASHCARDS_KEY = 'NEW_FLASHCARDS';
 
+/*
+  addPracticeTime
+  @param {number} minutes
+  @return {Promise<void>}
+*/
 async function addPracticeTime(minutes) {
   try {
     let currentPracticeTime = Number(
@@ -19,6 +30,10 @@ async function addPracticeTime(minutes) {
   } catch {}
 }
 
+/*
+  getPracticeTime
+  @return {Promise<number>}
+*/
 async function getPracticeTime() {
   let time = 0;
 
@@ -31,6 +46,11 @@ async function getPracticeTime() {
   }
 }
 
+/*
+  addNewFlashcard
+  @param {number} count
+  @return {Promise<void>}
+*/
 async function addNewFlashcard(count) {
   try {
     let currentFlashcardCount = Number(
@@ -50,6 +70,10 @@ async function addNewFlashcard(count) {
   } catch {}
 }
 
+/*
+  getNewFlashcardCount
+  @return {Promise<number>}
+*/
 async function getNewFlashcardCount() {
   let count = 0;
 
