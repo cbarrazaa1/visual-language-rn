@@ -1,3 +1,9 @@
+/*
+  Visual Learning
+  TranslatePhotoScreenView.js
+
+  Copyright (c) 2019
+*/
 import * as React from 'react';
 import {ScrollView, View, Text, StyleSheet} from 'react-native';
 import Button from '../../common/components/Button';
@@ -21,6 +27,17 @@ const languages = {
   hi: 'Hindú',
 };
 
+/*
+  TranslatePhotoScreenView
+  React Functional Component
+
+  Allows the user to pick a language to translate a recognized object.
+
+  Props: {}
+  State: {
+    language: string
+  }
+*/
 function TranslatePhotoSreenView() {
   // Translate Photo Screen View Controller //
   const [language, setLanguage] = useState('en');
