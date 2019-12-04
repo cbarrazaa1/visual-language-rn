@@ -22,9 +22,7 @@ import {elevationShadowStyle} from '../../common/StylesHelper';
 */
 function TakePhotoButton({onPress}) {
   return (
-    <TouchableOpacity
-      style={styles.root}
-      onPress={onPress}
+    <TouchableOpacity style={styles.root} onPress={onPress}>
       <Ionicon name="md-camera" size={48} color="#000000" />
     </TouchableOpacity>
   );
